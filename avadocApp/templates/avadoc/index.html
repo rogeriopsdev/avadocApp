@@ -1,0 +1,33 @@
+<{% extends "avadoc/base.html" %}
+
+{% block corpo %}
+    <main style="color: rgb(197,1,226);background: #1b1e21" >
+    <div class="row h-auto mb-2 p-2" style="border: solid 2px rgb(46,248,160)">
+        <div class="col-lg-4 w-25">
+            <h3>Esquerda linha 1</h3>
+
+        </div>
+        <di class="col-lg-4 w-50">
+            <h3>Centro linha 1</h3>
+            {{ docentes }}
+        </di>
+        <di class="col-lg-4 w-25">
+            <h3>Direita linha 1</h3>
+            {{ discentes }}
+        </di>
+    </div>
+     <div class="row  h-auto p-2" style="border: solid 2px rgb(255,5,52)">
+        <div class="col-lg-4 w-25">
+            <h3>Esquerda linha 2</h3>
+
+        </div>
+        <di class="col-lg-4 w-50">
+            <h3>Centro linha 1</h3>
+        </di>
+        <di class="col-lg-4 w-25">
+            <h3>Direita linha 1</h3>
+        </di>
+    </div>
+    </main>
+
+{% endblock corpo %}

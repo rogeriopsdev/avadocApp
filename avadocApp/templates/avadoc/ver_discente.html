@@ -1,0 +1,56 @@
+{% extends "avadoc/base.html" %}
+
+{% block corpo %}
+    <table class="table table-bordered table-striped table-hover table-light container " style="font-size: x-small;">
+        <div>
+
+            <thead class="text-center  container text-light mt-5"  style="height: 50px; margin-top: 100px;font-size: x-small;">
+            <tr class="font-weight-bolder ">
+                <td>Matrícula</td>
+                <td>Nome</td>
+                <td>Data de Ingresso</td>
+                <td>Campus</td>
+                <td>Cidade</td>
+                <td>Curso</td>
+                <td>Data nascimento</td>
+                <td>Descriação</td>
+                <td>e-mail</td>
+                <td>Status</td>
+                <td>Telefone</td>
+                <td>Origem</td>
+                <td>Turma</td>
+                <td>Zona</td>
+                <td>Ação 1</td>
+                <td>Ação 2</td>
+
+            </tr>
+            </thead>
+
+        </div>
+        <tbody>
+
+        {% for discente in discentes %}
+            <tr style="">
+                <td>{{ discente.mat_discente }}</td>
+                <td >{{ discente.nome_discente }}</td>
+                <td >{{ discente.ingresso_discente }}</td>
+                <td >{{ discente.campus_discente }}</td>
+                <td >{{ discente.cidade_discente }}</td>
+                <td >{{ discente.curso_discente }}</td>
+                <td >{{ discente.nascimento_discente }}</td>
+                <td >{{ discente.desc_curso_discente }} </td>
+                <td >{{ discente.email_discente }}</td>
+                <td >{{ discente.status_discente }}</td>
+                <td >{{ discente.tel_discente }}</td>
+                <td >{{ discente.origem_discente }}</td>
+                <td >{{ discente.turma_discente }}</td>
+                <td >{{ discente.zona_discente }}</td>
+                <td class="p-1 m-auto"><a href="" class="btn btn-warning"
+                                                                style="font-size: 10px;">Editar</a></td>
+                <td  class="p-1 m-auto"><a href="" class="btn btn-primary "
+                                                                style="font-size: 10px;">Vincular</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock corpo %}

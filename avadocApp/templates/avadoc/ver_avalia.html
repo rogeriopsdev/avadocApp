@@ -1,0 +1,99 @@
+{% extends "avadoc/base.html" %}
+
+{% block corpo %}
+    <form method="get">
+    <table class="table table container " style="font-size: x-small ">
+        <div>
+
+            <thead class=" text-center  container text-light mt-5 "
+                   style="height: 50px; margin-top: 100px;font-size: 12px;">
+            <tr class="fixed-top" style="margin-top: 60px; margin-left: 110px">
+                <td style="width: 120px;text-align: center;">Id</td>
+                <td style="width:120px;">Assiduidade</td>
+                <td style="width:130px;">Pontualidade</td>
+                <td style="width:100px; ">Planejamento</td>
+                <td style="width:200px; ">Realização das Aulas</td>
+                <td style="width:120px; ">Avaliações</td>
+                <td style="width:140px; ">Postura</td>
+                <td style="width:140px; ">Docente</td>
+                <td style="width:120px; "></td>
+                <td style="width:120px; "></td>
+            </tr>
+            </thead>
+
+        </div>
+        <tbody>
+        <tr style="height: 50px; margin-top: 100px;">
+
+
+        </tr>
+        {% for ava in avas %}
+            <tr>
+
+                <td style="width: 180px; text-align: center;">{{ava.id_avadoc }}</td>
+                <td style="width: 180px;">{{ ava.assid_avadoc }}</td>
+                <td style="width: 180px;">{{ ava.pont_avadoc }}</td>
+                <td style="width: 180px;">{{ ava.plan_avadoc }}</td>
+                <td style="width: 220px;">{{ ava.realiza_avadoc }}</td>
+                <td style="width: 180px;">{{ ava.avaliacao_avadoc }}</td>
+                <td style="width: 180px;">{{ava.postura_avadoc }}</td>
+                <td style="width: 180px;">{{ava.id_docente }}</td>
+                <td style="width: 180px; " class="p-1 m-auto"><a href="" class="btn btn-warninsg"
+                                                                style="font-size: 10px;">Editar</a></td>
+                <td style="width: 20px; " class="p-1 m-auto"><a href="{% url 'avindividual' ava.id_docente_id%}" name="search" class="btn btn-primary " style="font-size: 10px; ">Ver</a></td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </form>
+    <a href="">{{fig.add_bar}}</a>
+    <script>
+    function processData(avas) {
+    var result = []
+    avas = JSON.parse(avas);
+    avas.forEach(item => result.push(item.fields));
+    return result;
+}
+$.ajax({
+url: $("#pivot-table-container").attr("data-url"),
+    dataType: 'json',
+    success: function(data) {
+        new Flexmonster({
+            container: "#pivot-table-container",
+            componentFolder: "https://cdn.flexmonster.com/",
+            width: "100%",
+            height: 430,
+            toolbar: true,
+            report: {
+                dataSource: {
+                    type: "json",
+                    data: processData(data)
+                },
+                slice: {}
+            }
+        });
+        new Flexmonster({
+            container: "#pivot-chart-container",
+            componentFolder: "https://cdn.flexmonster.com/",
+            width: "100%",
+            height: 430,
+            //toolbar: true,
+            report: {
+                dataSource: {
+                    type: "json",
+                    data: processData(data)
+                },
+                slice: {},
+                "options": {
+                    "viewType": "charts",
+                    "chart": {
+                        "type": "pie"
+                    }
+                }
+            }
+        });
+    }
+});
+    </script>
+{% endblock corpo %}
